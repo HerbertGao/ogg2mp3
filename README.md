@@ -81,9 +81,11 @@ ogg2mp3 doctor --json   # 机器可读，含 binary_version 顶层字段
 在 Claude Code 终端里：
 
 ```text
-/plugin marketplace add /path/to/ogg2mp3
+/plugin marketplace add HerbertGao/ogg2mp3
 /plugin install ogg2mp3@ogg2mp3
 ```
+
+> `owner/repo` 简写、`https://github.com/HerbertGao/ogg2mp3`、或本地 clone 路径都支持。Claude Code 从仓根 `.claude-plugin/marketplace.json` 读 marketplace 入口。
 
 然后就有了：
 
@@ -92,7 +94,11 @@ ogg2mp3 doctor --json   # 机器可读，含 binary_version 顶层字段
 
 ### Codex CLI
 
-类似流程，marketplace 地址同上路径（`.agents/plugins/marketplace.json` 自动被识别）。装好后 Codex 也能用自然语言驱动同款 4 个能力。
+```text
+codex plugin marketplace add HerbertGao/ogg2mp3 --sparse .agents/plugins
+```
+
+Codex 的 marketplace 入口在 `.agents/plugins/marketplace.json`，所以加 `--sparse .agents/plugins` 走稀疏检出。装好后 Codex 也能用自然语言驱动同款 4 个能力。
 
 ### Skill 设计要点
 
