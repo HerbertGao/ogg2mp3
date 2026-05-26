@@ -13,7 +13,7 @@
 
 set -eo pipefail
 
-VERSION="2.0.0"
+VERSION="2026.5.0"
 
 # ----- globals filled by subcommands -----
 JSON_MODE=0
@@ -27,6 +27,19 @@ META_ARGS=()
 log_info()  { [[ $JSON_MODE -eq 0 ]] && printf '%s\n' "$*" >&2 || true; }
 log_warn()  { printf 'warning: %s\n' "$*" >&2; }
 log_error() { printf 'error: %s\n' "$*" >&2; }
+
+# ============================================================================
+# privilege guard
+# ============================================================================
+
+# Refuse to run write operations as root. Running as root would leave
+# root-owned files in the user's library, which then need sudo to clean up.
+require_unprivileged() {
+    if [[ "$(id -u)" -eq 0 ]]; then
+        log_error "must not run as root; rerun without sudo"
+        exit 3
+    fi
+}
 
 # ============================================================================
 # prompt helpers
@@ -99,7 +112,7 @@ install_hint() {
     case "$1" in
         ffmpeg|ffprobe) echo "brew install ffmpeg" ;;
         jq)             echo "brew install jq" ;;
-        icnsutil)       echo "pip3 install icnsutil" ;;
+        icnsutil)       echo "pipx install icnsutil  # (brew install pipx if missing)" ;;
         derez)          echo "xcode-select --install" ;;
         *)              echo "" ;;
     esac
@@ -309,6 +322,7 @@ cmd_convert() {
     [[ -n "$input" ]] || { log_error "missing <input>"; usage_convert; exit 2; }
     [[ -f "$input" ]] || { log_error "input not found: $input"; exit 1; }
 
+    require_unprivileged
     require_tools ffmpeg ffprobe jq
     [[ $no_cover -eq 0 ]] && require_tools derez icnsutil xxd grep sed
 
@@ -395,6 +409,7 @@ cmd_batch() {
         exit 2
     fi
 
+    require_unprivileged
     require_tools ffmpeg ffprobe jq
     [[ $no_cover -eq 0 ]] && require_tools derez icnsutil xxd grep sed
 
@@ -628,7 +643,11 @@ cmd_doctor() {
                     install_hint: (if $hint == "" then null else $hint end)
                 }]')
         done
-        jq -n --argjson ok "$ok" --argjson checks "$checks" '{ok:($ok==1), checks:$checks}'
+        jq -n \
+            --argjson ok "$ok" \
+            --argjson checks "$checks" \
+            --arg binary_version "$VERSION" \
+            '{ok:($ok==1), binary_version:$binary_version, checks:$checks}'
         [[ $ok -eq 1 ]] || exit 3
     else
         printf '%-12s %-8s %-12s %s\n' "TOOL" "STATUS" "VERSION" "PATH"

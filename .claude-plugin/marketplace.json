@@ -1,0 +1,18 @@
+{
+  "name": "ogg2mp3",
+  "owner": {
+    "name": "HerbertGao",
+    "url": "https://github.com/HerbertGao"
+  },
+  "metadata": {
+    "description": "Self-hosted Claude Code plugin marketplace for ogg2mp3 — convert QQ Music .ogg/.oggh files on macOS to .mp3 with cover art and metadata.",
+    "version": "2026.5.0"
+  },
+  "plugins": [
+    {
+      "name": "ogg2mp3",
+      "source": "./packaging/claude-code",
+      "description": "Convert QQ Music .ogg/.oggh to .mp3 with embedded cover (from macOS Resource Fork ICNS) and metadata. Provides /ogg2mp3:* slash commands and a Skill description. Refuses to run as root."
+    }
+  ]
+}

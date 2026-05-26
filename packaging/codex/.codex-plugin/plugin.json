@@ -1,0 +1,29 @@
+{
+  "name": "ogg2mp3",
+  "version": "2026.5.0",
+  "description": "Convert QQ Music .ogg/.oggh files on macOS to .mp3 with embedded cover art and metadata.",
+  "author": {
+    "name": "HerbertGao",
+    "url": "https://github.com/HerbertGao"
+  },
+  "homepage": "https://github.com/HerbertGao/ogg2mp3",
+  "repository": "https://github.com/HerbertGao/ogg2mp3",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "ogg2mp3",
+    "shortDescription": "Convert QQ Music .ogg/.oggh to .mp3 with cover art and metadata.",
+    "longDescription": "QQ Music's macOS app stores audio as Vorbis-in-Ogg with the cover image hidden in the macOS Resource Fork as an ICNS resource. ogg2mp3 reassembles audio + cover + metadata into a standard MP3 with id3v2.3 tags. Supports single-file conversion, batch directory processing (recursive, skip-existing, dry-run), read-only metadata inspection, and environment self-check. Refuses to run as root.",
+    "category": "Utilities",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "把这个 QQ 音乐文件转成 MP3",
+      "批量转换 QQ 音乐文件夹",
+      "检查 ogg2mp3 环境是否就绪"
+    ],
+    "brandColor": "#1DB954"
+  }
+}

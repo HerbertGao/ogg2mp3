@@ -1,0 +1,28 @@
+{
+  "name": "ogg2mp3",
+  "version": "2026.5.0",
+  "interface": {
+    "displayName": "ogg2mp3",
+    "shortDescription": "Self-hosted Codex CLI marketplace for ogg2mp3.",
+    "longDescription": "Provides a Codex CLI plugin (ogg2mp3) that converts QQ Music .ogg/.oggh files on macOS to .mp3 with embedded cover art (extracted from the macOS Resource Fork ICNS) and metadata. SKILL.md routes natural-language intent to the local ogg2mp3 binary (convert / batch / inspect / doctor)."
+  },
+  "owner": {
+    "name": "HerbertGao",
+    "url": "https://github.com/HerbertGao"
+  },
+  "plugins": [
+    {
+      "name": "ogg2mp3",
+      "source": {
+        "source": "local",
+        "path": "./packaging/codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Utilities",
+      "description": "Convert QQ Music .ogg/.oggh to .mp3 with embedded cover art and metadata. SKILL.md routes natural-language intent to the local ogg2mp3 binary (convert/batch/inspect/doctor)."
+    }
+  ]
+}

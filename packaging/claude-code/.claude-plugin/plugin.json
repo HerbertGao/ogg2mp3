@@ -1,0 +1,21 @@
+{
+  "name": "ogg2mp3",
+  "version": "2026.5.0",
+  "description": "Convert QQ Music .ogg/.oggh files on macOS to .mp3 with embedded cover art (from Resource Fork ICNS) and metadata. Provides /ogg2mp3:* slash commands and a Skill description for natural-language invocation. All operations run unprivileged.",
+  "author": {
+    "name": "HerbertGao",
+    "url": "https://github.com/HerbertGao"
+  },
+  "homepage": "https://github.com/HerbertGao/ogg2mp3",
+  "repository": "https://github.com/HerbertGao/ogg2mp3",
+  "license": "MIT",
+  "keywords": [
+    "macos",
+    "qqmusic",
+    "ogg",
+    "mp3",
+    "audio-conversion",
+    "skill"
+  ],
+  "minimum_ogg2mp3_version": "2026.5.0"
+}

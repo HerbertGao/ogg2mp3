@@ -77,7 +77,7 @@ ogg2mp3                       # 交互菜单（无参运行）
 ## Dependencies
 
 - macOS 命令行工具（提供 `derez`）：`xcode-select --install`
-- [icnsutil](https://github.com/relikd/icnsutil)：`pip3 install icnsutil`
+- [icnsutil](https://github.com/relikd/icnsutil)：`pipx install icnsutil`（如果没有 pipx：`brew install pipx`。新 macOS 上 PEP 668 拦截裸 `pip3 install`，所以走 pipx）
 - ffmpeg / ffprobe：`brew install ffmpeg`
 - jq：`brew install jq`
 
